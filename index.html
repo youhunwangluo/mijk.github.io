@@ -1,46 +1,233 @@
 ---
-layout: page
-description: "「离开世界之前 一切都是过程」"
+layout: default
 ---
 
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">
-            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-        <div class="post-content-preview">
-            {% if post.lang == 'en' %}
-                {{ post.content | strip_html | truncate:300 }}
-            {% else %}
-                {{ post.content | strip_html | truncate:200 }}
-            {% endif %}
+<!-- 网站全局容器：统一控制宽度和边距 -->
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <!-- 1. 网站头部（导航栏）：极简通用版 -->
+    <header style="
+        background-color: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    ">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <!-- 网站logo/名称（可自定义） -->
+            <div style="font-size: 24px; font-weight: bold; color: #1f2937;">
+                <a href="/" style="text-decoration: none; color: inherit;">My Personal Site</a>
+            </div>
+            <!-- 导航菜单（可按需增删） -->
+            <nav>
+                <ul style="
+                    list-style: none;
+                    display: flex;
+                    gap: 30px;
+                    margin: 0;
+                    padding: 0;
+                ">
+                    <li><a href="#home" style="text-decoration: none; color: #4b5563; font-size: 16px;">首页</a></li>
+                    <li><a href="#blog" style="text-decoration: none; color: #4b5563; font-size: 16px;">博客</a></li>
+                    <li><a href="#projects" style="text-decoration: none; color: #4b5563; font-size: 16px;">项目</a></li>
+                    <li><a href="#tools" style="text-decoration: none; color: #4b5563; font-size: 16px;">工具</a></li>
+                    <li><a href="#contact" style="text-decoration: none; color: #4b5563; font-size: 16px;">联系我</a></li>
+                </ul>
+            </nav>
         </div>
-    </a>
-    <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
-    </p>
-</div>
-<hr>
-{% endfor %}
+    </header>
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
-{% endif %}
+    <!-- 2. 核心内容区：分板块设计，可自由替换 -->
+    <main style="padding: 40px 0;">
+        <!-- 首页banner（通用欢迎区） -->
+        <section id="home" style="text-align: center; padding: 80px 0; margin-bottom: 60px;">
+            <h1 style="font-size: 48px; color: #1f2937; margin-bottom: 20px;">欢迎来到我的个人网站</h1>
+            <p style="font-size: 20px; color: #6b7280; max-width: 800px; margin: 0 auto;">
+                这里是我分享知识、记录成长、展示作品的小天地
+            </p>
+            <!-- 通用按钮（可跳转任意页面） -->
+            <a href="#blog" style="
+                display: inline-block;
+                margin-top: 30px;
+                padding: 12px 24px;
+                background-color: #3b82f6;
+                color: white;
+                text-decoration: none;
+                border-radius: 8px;
+                font-size: 16px;
+            ">
+                开始探索 →
+            </a>
+        </section>
+
+        <!-- 博客板块（通用占位） -->
+        <section id="blog" style="margin-bottom: 60px;">
+            <h2 style="font-size: 32px; color: #1f2937; margin-bottom: 30px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
+                最新博客
+            </h2>
+            <!-- 博客卡片容器：自适应布局 -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                <!-- 博客卡片1（占位） -->
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    padding: 20px;
+                    transition: box-shadow 0.3s ease;
+                " onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.boxShadow='none';">
+                    <h3 style="font-size: 20px; color: #1f2937; margin-bottom: 10px;">
+                        <a href="#" style="text-decoration: none; color: inherit;">文章标题示例</a>
+                    </h3>
+                    <p style="color: #6b7280; margin-bottom: 15px; font-size: 14px;">发布时间：2026-03-12</p>
+                    <p style="color: #4b5563;">
+                        这是文章的简短摘要，可介绍文章核心内容、创作思路等。点击标题查看完整内容。
+                    </p>
+                </div>
+                <!-- 博客卡片2（占位） -->
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    padding: 20px;
+                    transition: box-shadow 0.3s ease;
+                " onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.boxShadow='none';">
+                    <h3 style="font-size: 20px; color: #1f2937; margin-bottom: 10px;">
+                        <a href="#" style="text-decoration: none; color: inherit;">另一个文章标题</a>
+                    </h3>
+                    <p style="color: #6b7280; margin-bottom: 15px; font-size: 14px;">发布时间：2026-03-10</p>
+                    <p style="color: #4b5563;">
+                        这是第二篇文章的摘要，你可以替换成自己的内容，比如技术分享、学习笔记、生活感悟等。
+                    </p>
+                </div>
+                <!-- 博客卡片3（占位） -->
+                <div style="
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    padding: 20px;
+                    transition: box-shadow 0.3s ease;
+                " onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.boxShadow='none';">
+                    <h3 style="font-size: 20px; color: #1f2937; margin-bottom: 10px;">
+                        <a href="#" style="text-decoration: none; color: inherit;">更多文章待更新</a>
+                    </h3>
+                    <p style="color: #6b7280; margin-bottom: 15px; font-size: 14px;">发布时间：敬请期待</p>
+                    <p style="color: #4b5563;">
+                        你可以持续更新这个板块，分享自己的所学所思，打造专属的内容空间。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目板块（通用占位） -->
+        <section id="projects" style="margin-bottom: 60px;">
+            <h2 style="font-size: 32px; color: #1f2937; margin-bottom: 30px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
+                我的项目
+            </h2>
+            <div style="background-color: #f9fafb; padding: 30px; border-radius: 8px;">
+                <p style="color: #4b5563; font-size: 18px; text-align: center;">
+                    这里可以展示你的个人项目、开源作品、实战案例等<br>
+                    比如：编程项目、设计作品、工具开发、兴趣相关的小项目
+                </p>
+                <a href="#" style="
+                    display: block;
+                    width: 180px;
+                    margin: 20px auto 0;
+                    padding: 10px 0;
+                    text-align: center;
+                    border: 1px solid #3b82f6;
+                    color: #3b82f6;
+                    text-decoration: none;
+                    border-radius: 8px;
+                    font-size: 16px;
+                ">
+                    查看全部项目
+                </a>
+            </div>
+        </section>
+
+        <!-- 工具板块（通用占位） -->
+        <section id="tools" style="margin-bottom: 60px;">
+            <h2 style="font-size: 32px; color: #1f2937; margin-bottom: 30px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
+                实用工具
+            </h2>
+            <ul style="
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                padding: 0;
+            ">
+                <li style="
+                    background-color: #ffffff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    padding: 12px 20px;
+                ">
+                    <a href="#" style="text-decoration: none; color: #1f2937;">工具1 →</a>
+                </li>
+                <li style="
+                    background-color: #ffffff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    padding: 12px 20px;
+                ">
+                    <a href="#" style="text-decoration: none; color: #1f2937;">工具2 →</a>
+                </li>
+                <li style="
+                    background-color: #ffffff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    padding: 12px 20px;
+                ">
+                    <a href="#" style="text-decoration: none; color: #1f2937;">工具3 →</a>
+                </li>
+                <li style="
+                    background-color: #ffffff;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    padding: 12px 20px;
+                ">
+                    <a href="#" style="text-decoration: none; color: #1f2937;">工具4 →</a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 联系板块（通用占位） -->
+        <section id="contact">
+            <h2 style="font-size: 32px; color: #1f2937; margin-bottom: 30px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
+                联系我
+            </h2>
+            <div style="background-color: #f9fafb; padding: 30px; border-radius: 8px; text-align: center;">
+                <p style="color: #4b5563; font-size: 18px; margin-bottom: 20px;">
+                    如果你有任何交流、合作的想法，欢迎通过以下方式联系我
+                </p>
+                <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <p style="color: #1f2937; font-weight: bold; margin-bottom: 5px;">邮箱</p>
+                        <p style="color: #6b7280;">your-email@example.com</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="color: #1f2937; font-weight: bold; margin-bottom: 5px;">GitHub</p>
+                        <p style="color: #6b7280;">github.com/your-username</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="color: #1f2937; font-weight: bold; margin-bottom: 5px;">其他</p>
+                        <p style="color: #6b7280;">可自定义联系方式</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 3. 网站页脚（通用版） -->
+    <footer style="
+        background-color: #1f2937;
+        color: #d1d5db;
+        padding: 40px 0;
+        margin-top: 60px;
+        border-radius: 8px;
+        text-align: center;
+    ">
+        <p style="margin: 0; font-size: 16px;">© 2026 My Personal Site. All rights reserved.</p>
+        <p style="margin: 10px 0 0; font-size: 14px; color: #9ca3af;">
+            打造属于自己的个性化网站
+        </p>
+    </footer>
+</div>
