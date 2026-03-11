@@ -3,27 +3,15 @@ layout: default
 ---
 
 <!-- 网站全局容器：统一控制宽度和边距 -->
-<div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-    <!-- 1. 网站头部（导航栏）：极简通用版 -->
-    <header style="
+<header style="
     background-color: #ffffff;
     border-bottom: 1px solid #e5e7eb;
     padding: 20px 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    width: 100%;  /* 导航栏宽度占满屏幕 */
-    left: 0;      /* 对齐屏幕左侧 */
-    right: 0;     /* 对齐屏幕右侧 */
 ">
-    <div style="
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;  /* 内容最大宽度（避免大屏拉伸太宽） */
-        margin: 0 auto;     /* 内容居中 */
-        padding: 0 20px;    /* 左右留边，适配小屏 */
-    ">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
         <!-- 网站logo/名称 -->
         <div style="font-size: 24px; font-weight: bold; color: #1f2937;">
             <a href="/" style="text-decoration: none; color: inherit;">My Personal Site</a>
@@ -36,7 +24,6 @@ layout: default
                 gap: 30px;
                 margin: 0;
                 padding: 0;
-                flex-wrap: wrap; /* 小屏时导航菜单自动换行 */
             ">
                 <li><a href="#home" style="text-decoration: none; color: #4b5563; font-size: 16px;">首页</a></li>
                 <li><a href="#blog" style="text-decoration: none; color: #4b5563; font-size: 16px;">博客</a></li>
@@ -212,11 +199,11 @@ layout: default
                 <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
                     <div style="text-align: center;">
                         <p style="color: #1f2937; font-weight: bold; margin-bottom: 5px;">邮箱</p>
-                        <p style="color: #6b7280;">your-email@example.com</p>
+                        <p style="color: #6b7280;">***</p>
                     </div>
                     <div style="text-align: center;">
                         <p style="color: #1f2937; font-weight: bold; margin-bottom: 5px;">GitHub</p>
-                        <p style="color: #6b7280;">github.com/your-username</p>
+                        <p style="color: #6b7280;">***</p>
                     </div>
                     <div style="text-align: center;">
                         <p style="color: #1f2937; font-weight: bold; margin-bottom: 5px;">其他</p>
