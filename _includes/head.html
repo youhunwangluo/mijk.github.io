@@ -1,72 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
+    <!-- 核心基础配置（通用网站必备） -->
+    <meta charset="UTF-8">
+    <!-- 适配IE浏览器 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="{{ site.description }}">
-    <meta name="keywords" content="{{ site.keyword }}">
-    <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
+    <!-- 适配手机/平板等移动端，禁止缩放 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    
+    <!-- 自定义网站信息（你可按需修改） -->
+    <meta name="description" content="你的网站描述 - 比如「个人技术分享站，聚焦机械设计、视觉设备装调、电控维修领域」">
+    <meta name="keywords" content="你的关键词 - 比如「机械设计, SolidWorks, CCD视觉设备, 电控维修, 个人技术博客」">
+    <!-- 网站主题色（移动端浏览器顶部栏颜色） -->
+    <meta name="theme-color" content="#2c3e50">
 
-    <!-- Open Graph -->
-    <meta property="og:title"
-        content="{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}">
-    {% case page.layout %}
-    {% when 'post' %}
-    <meta property="og:type" content="article">
-    <meta property="og:description" content="{{ page.excerpt | strip_html | truncate:200 }}">
-    {% if page.date %}
-    <meta property="article:published_time" content="{{ page.date | date: " %Y-%m-%dT%H:%M:%SZ" }}">
-    {% endif %}
-    {% if page.author %}
-    <meta property="article:author" content="{{ page.author }}">
-    {% endif %}
-    {% for tag in page.tags %}
-    <meta property="article:tag" content="{{ tag }}">
-    {% endfor %}
-    {% else %}
+    <!-- 社交分享优化（可选，比如分享到微信/微博时显示的信息） -->
+    <meta property="og:title" content="你的网站标题">
     <meta property="og:type" content="website">
-    <meta property="og:description"
-        content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    {% endcase %}
-    <meta property="og:image" content="{{ site.url }}{{ site.sidebar-avatar }}">
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-    <meta property="og:site_name" content="{{ site.SEOTitle }}">
+    <meta property="og:description" content="和上面的description一致即可">
+    <!-- 可选：替换为你的网站封面图（上传到仓库img文件夹后改路径） -->
+    <meta property="og:image" content="https://youhunwangluo.github.io/mijk.github.io/img/cover.jpg">
+    <meta property="og:url" content="https://youhunwangluo.github.io/mijk.github.io/">
+    <meta property="og:site_name" content="你的网站名称">
 
-    <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>
+    <!-- 网站标题（浏览器标签显示） -->
+    <title>你的网站名称</title>
 
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ site.baseurl }}/img/favicon.ico">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="{{ "/css/bootstrap.min.css" | prepend: site.baseurl }}">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ "/css/hux-blog.min.css" | prepend: site.baseurl }}">
-
-    <!-- Custom Fonts -->
-    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- Hux change font-awesome CDN to qiniu -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
-        type="text/css">
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- ga & ba script hoook -->
-    <script></script>
-
-    <!-- Google AdSense -->
-    <script data-ad-client="ca-pub-6487568398225121" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 通用基础样式（解决排版问题，适配所有内容类型） -->
+    <style>
+        /* 全局重置：消除不同浏览器默认样式差异 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* 基础字体：适配中文，行高舒适 */
+        body {
+            font-family: "微软雅黑", "Microsoft Yahei", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        /* 通用标题样式（层级清晰） */
+        h1 { font-size: 28px; color: #2c3e50; margin: 20px 0; }
+        h2 { font-size: 24px; color: #34495e; margin: 18px 0; }
+        h3 { font-size: 20px; color: #4a6583; margin: 16px 0; }
+        /* 通用文本/链接样式 */
+        p { margin: 10px 0; font-size: 16px; }
+        a { color: #3498db; text-decoration: none; }
+        a:hover { color: #2980b9; text-decoration: underline; }
+        /* 通用列表样式 */
+        ul, ol { margin: 10px 0 10px 30px; }
+        li { margin: 8px 0; }
+        /* 通用容器样式（可用来分板块） */
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
