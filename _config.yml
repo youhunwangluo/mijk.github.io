@@ -100,3 +100,10 @@ friends:
     { title: "DHong Say", href: "http://dhong.co" },
     { title: "尹峰以为", href: "http://ingf.github.io/" },
   ]
+
+# 字符编码配置
+encoding: utf-8
+markdown: kramdown
+kramdown:
+  input: GFM
+  encoding: utf-8
