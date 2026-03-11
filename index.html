@@ -6,36 +6,47 @@ layout: default
 <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
     <!-- 1. 网站头部（导航栏）：极简通用版 -->
     <header style="
-        background-color: #ffffff;
-        border-bottom: 1px solid #e5e7eb;
-        padding: 20px 0;
-        position: sticky;
-        top: 0;
-        z-index: 100;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;  /* 导航栏宽度占满屏幕 */
+    left: 0;      /* 对齐屏幕左侧 */
+    right: 0;     /* 对齐屏幕右侧 */
+">
+    <div style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;  /* 内容最大宽度（避免大屏拉伸太宽） */
+        margin: 0 auto;     /* 内容居中 */
+        padding: 0 20px;    /* 左右留边，适配小屏 */
     ">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <!-- 网站logo/名称（可自定义） -->
-            <div style="font-size: 24px; font-weight: bold; color: #1f2937;">
-                <a href="/" style="text-decoration: none; color: inherit;">My Personal Site</a>
-            </div>
-            <!-- 导航菜单（可按需增删） -->
-            <nav>
-                <ul style="
-                    list-style: none;
-                    display: flex;
-                    gap: 30px;
-                    margin: 0;
-                    padding: 0;
-                ">
-                    <li><a href="#home" style="text-decoration: none; color: #4b5563; font-size: 16px;">首页</a></li>
-                    <li><a href="#blog" style="text-decoration: none; color: #4b5563; font-size: 16px;">博客</a></li>
-                    <li><a href="#projects" style="text-decoration: none; color: #4b5563; font-size: 16px;">项目</a></li>
-                    <li><a href="#tools" style="text-decoration: none; color: #4b5563; font-size: 16px;">工具</a></li>
-                    <li><a href="#contact" style="text-decoration: none; color: #4b5563; font-size: 16px;">联系我</a></li>
-                </ul>
-            </nav>
+        <!-- 网站logo/名称 -->
+        <div style="font-size: 24px; font-weight: bold; color: #1f2937;">
+            <a href="/" style="text-decoration: none; color: inherit;">My Personal Site</a>
         </div>
-    </header>
+        <!-- 导航菜单 -->
+        <nav>
+            <ul style="
+                list-style: none;
+                display: flex;
+                gap: 30px;
+                margin: 0;
+                padding: 0;
+                flex-wrap: wrap; /* 小屏时导航菜单自动换行 */
+            ">
+                <li><a href="#home" style="text-decoration: none; color: #4b5563; font-size: 16px;">首页</a></li>
+                <li><a href="#blog" style="text-decoration: none; color: #4b5563; font-size: 16px;">博客</a></li>
+                <li><a href="#projects" style="text-decoration: none; color: #4b5563; font-size: 16px;">项目</a></li>
+                <li><a href="#tools" style="text-decoration: none; color: #4b5563; font-size: 16px;">工具</a></li>
+                <li><a href="#contact" style="text-decoration: none; color: #4b5563; font-size: 16px;">联系我</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
     <!-- 2. 核心内容区：分板块设计，可自由替换 -->
     <main style="padding: 40px 0;">
