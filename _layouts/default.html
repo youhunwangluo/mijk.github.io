@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-
 {% include head.html %}
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- 其他原有代码（样式、标题等） -->
-</head>
-    
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
-
-    {% include nav.html %}
-    {% include search.html %}
-
+<body>
+    <!-- 只加载index.html的内容，无任何多余组件 -->
     {{ content }}
-
-    {% include footer.html %}
-
-
-<!-- Image to hack wechat -->
-<img src="/img/icon_wechat.png" width="0" height="0" />
-<!-- Migrate from head to bottom, no longer block render and still work -->
-
 </body>
-
 </html>
