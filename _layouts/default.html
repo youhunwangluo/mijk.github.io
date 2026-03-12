@@ -1,6 +1,104 @@
-{% include head.html %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 页面标题，自动读取文章/页面的title属性 -->
+    <title>{{ page.title | default: "我的个人网站" }}</title>
+    <!-- 全局样式：解决换行问题 + 基础美化 -->
+    <style>
+        /* 全局重置 + 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", "PingFang SC", sans-serif;
+        }
+
+        /* 核心：强制自动换行，解决文本溢出 */
+        body {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f9f9f9;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* 文章/页面内容容器 */
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* 段落、标题样式优化 + 换行加强 */
+        p {
+            word-break: normal;
+            overflow-wrap: break-word;
+            white-space: pre-line; /* 保留手动换行 */
+            margin-bottom: 1.5em;
+            font-size: 16px;
+        }
+
+        h1, h2, h3, h4 {
+            margin: 1.5em 0 0.8em;
+            color: #222;
+            line-height: 1.3;
+        }
+
+        h1 { font-size: 32px; }
+        h2 { font-size: 26px; }
+        h3 { font-size: 22px; }
+        h4 { font-size: 18px; }
+
+        /* 列表样式 */
+        ul, ol {
+            margin: 1em 0 1.5em 2em;
+            line-height: 1.8;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式适配：手机端优化 */
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 15px;
+            }
+            h1 { font-size: 28px; }
+            h2 { font-size: 24px; }
+            p { font-size: 15px; }
+        }
+    </style>
+    <!-- 引入head.html（如果需要保留原有头部配置） -->
+    {% if site.includes.head %}
+        {% include head.html %}
+    {% endif %}
+</head>
 <body>
-    <!-- 只加载index.html的内容，无任何多余组件 -->
-    {{ content }}
+    <!-- 页面内容容器：所有页面内容都包裹在这里 -->
+    <div class="page-container">
+        <!-- 页面主体内容：自动读取文章/页面的内容 -->
+        {{ content }}
+    </div>
+
+    <!-- 可选：页脚（如需添加可取消注释） -->
+    <!--
+    <footer style="text-align: center; padding: 20px; color: #666; font-size: 14px; border-top: 1px solid #eee;">
+        © 2026 我的个人网站 | 自定义域名：yezide.cn
+    </footer>
+    -->
 </body>
 </html>
