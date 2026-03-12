@@ -1,0 +1,29 @@
+---
+layout: default
+title: 所有博客
+---
+
+<!-- 所有博客列表页 - 纯静态+基础Liquid，确保构建成功 -->
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+    <h1 style="font-size: 36px; color: #333; text-align: center; margin-bottom: 40px;">所有博客文章</h1>
+
+    <!-- 博客列表 -->
+    <div id="blog-list">
+        {% if site.posts != empty %}
+            {% for post in site.posts %}
+                <div style="border: 1px solid #eee; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                    <h2 style="font-size: 22px; margin: 0 0 10px;">
+                        <a href="{{ post.url }}" style="color: #333; text-decoration: none;">{{ post.title }}</a>
+                    </h2>
+                    <p style="color: #666; font-size: 14px; margin: 0 0 10px;">发布时间：{{ post.date | date: "%Y-%m-%d" }}</p>
+                    <p style="color: #555; line-height: 1.6; margin: 0 0 15px;">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+                    <a href="{{ post.url }}" style="display: inline-block; padding: 8px 16px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">阅读全文</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div style="text-align: center; padding: 80px 0; color: #666; font-size: 18px;">
+                暂无博客文章，敬请期待！
+            </div>
+        {% endif %}
+    </div>
+</div>
