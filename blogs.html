@@ -1,142 +1,67 @@
 ---
 layout: default
-title: 所有博客 | My Personal Site
+title: 所有博客 | 我的个人网站
 ---
 
-<!-- 所有博客列表页核心样式 + 内容 -->
+<!-- 所有博客列表页 - 极简稳定版 -->
 <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
     <!-- 页面标题 -->
-    <h1 style="font-size: 40px; color: #1f2937; margin-bottom: 40px; text-align: center;">
+    <h1 style="font-size: 36px; color: #1f2937; margin-bottom: 30px; text-align: center;">
         所有博客文章
     </h1>
 
-    <!-- 筛选栏（可选，按分类筛选） -->
-    <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
-        <p style="font-size: 16px; color: #4b5563; margin-bottom: 10px;">按分类筛选：</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-            <a href="#all" style="
-                padding: 8px 16px;
-                background-color: #3b82f6;
-                color: white;
-                text-decoration: none;
-                border-radius: 6px;
-                font-size: 14px;
-            ">全部</a>
-            {% assign categories = site.posts | map: 'categories' | uniq %}
-            {% for category in categories %}
-                <a href="#{{ category | slugify }}" style="
-                    padding: 8px 16px;
-                    background-color: #ffffff;
-                    border: 1px solid #e5e7eb;
-                    color: #4b5563;
+    <!-- 博客列表核心区域（仅依赖Jekyll基础语法） -->
+    {% if site.posts.size > 0 %}
+        <!-- 遍历所有文章（site.posts默认按时间倒序） -->
+        {% for post in site.posts %}
+            <div style="
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                padding: 25px;
+                margin-bottom: 20px;
+            ">
+                <!-- 文章标题（必填：title） -->
+                <h2 style="font-size: 22px; color: #1f2937; margin: 0 0 10px;">
+                    <a href="{{ post.url }}" style="text-decoration: none; color: inherit;">
+                        {{ post.title | default: '未命名文章' }}
+                    </a>
+                </h2>
+
+                <!-- 发布时间（必填：date） -->
+                <p style="color: #6b7280; font-size: 14px; margin: 0 0 10px;">
+                    发布时间：{{ post.date | date: "%Y-%m-%d" }}
+                </p>
+
+                <!-- 文章分类（必填：categories） -->
+                {% if post.categories.size > 0 %}
+                    <p style="color: #3b82f6; font-size: 14px; margin: 0 0 15px;">
+                        分类：{{ post.categories | join: ' / ' }}
+                    </p>
+                {% endif %}
+
+                <!-- 文章摘要（必填：excerpt） -->
+                <p style="color: #4b5563; line-height: 1.6; margin: 0 0 15px;">
+                    {{ post.excerpt | strip_html | truncate: 150 | default: '暂无摘要' }}
+                </p>
+
+                <!-- 阅读全文按钮 -->
+                <a href="{{ post.url }}" style="
+                    display: inline-block;
+                    padding: 8px 18px;
+                    background-color: #3b82f6;
+                    color: white;
                     text-decoration: none;
                     border-radius: 6px;
                     font-size: 14px;
                 ">
-                    {{ category }}
+                    阅读全文
                 </a>
-            {% endfor %}
-        </div>
-    </div>
-
-    <!-- 博客列表容器 -->
-    <div id="all" style="margin-bottom: 40px;">
-        {% if site.posts.size > 0 %}
-            {% for post in site.posts %}
-                <!-- 单篇博客卡片 -->
-                <div style="
-                    border: 1px solid #e5e7eb;
-                    border-radius: 8px;
-                    padding: 30px;
-                    margin-bottom: 20px;
-                    transition: box-shadow 0.3s ease;
-                " onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.boxShadow='none';">
-                    <!-- 文章标题 + 分类标签 -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
-                        <h2 style="font-size: 24px; color: #1f2937; margin: 0;">
-                            <a href="{{ post.url }}" style="text-decoration: none; color: inherit;">{{ post.title }}</a>
-                        </h2>
-                        {% if post.categories %}
-                            <span style="
-                                padding: 4px 10px;
-                                background-color: #eff6ff;
-                                color: #3b82f6;
-                                font-size: 12px;
-                                border-radius: 4px;
-                            ">
-                                {{ post.categories | first }}
-                            </span>
-                        {% endif %}
-                    </div>
-
-                    <!-- 发布时间 -->
-                    <p style="color: #6b7280; font-size: 14px; margin-bottom: 15px;">
-                        发布时间：{{ post.date | date: "%Y年%m月%d日" }}
-                    </p>
-
-                    <!-- 文章摘要 -->
-                    <p style="color: #4b5563; line-height: 1.8; margin-bottom: 20px;">
-                        {{ post.excerpt | strip_html | truncate: 200 }} <!-- 截取前200字作为摘要 -->
-                    </p>
-
-                    <!-- 阅读全文按钮 -->
-                    <a href="{{ post.url }}" style="
-                        display: inline-block;
-                        padding: 10px 20px;
-                        background-color: #3b82f6;
-                        color: white;
-                        text-decoration: none;
-                        border-radius: 6px;
-                        font-size: 14px;
-                    ">
-                        阅读全文 →
-                    </a>
-                </div>
-            {% endfor %}
-        {% else %}
-            <!-- 无文章时的提示 -->
-            <div style="text-align: center; padding: 80px 0; color: #6b7280; font-size: 18px;">
-                暂无博客文章，敬请期待！
             </div>
-        {% endif %}
-    </div>
-
-    <!-- 按分类展示（可选，和筛选栏联动） -->
-    {% assign categories = site.posts | map: 'categories' | uniq %}
-    {% for category in categories %}
-        <div id="{{ category | slugify }}" style="margin-bottom: 40px;">
-            <h2 style="font-size: 28px; color: #1f2937; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb;">
-                {{ category }}
-            </h2>
-            {% for post in site.posts %}
-                {% if post.categories contains category %}
-                    <div style="
-                        border: 1px solid #e5e7eb;
-                        border-radius: 8px;
-                        padding: 20px;
-                        margin-bottom: 15px;
-                    ">
-                        <h3 style="font-size: 20px; margin-bottom: 10px;">
-                            <a href="{{ post.url }}" style="text-decoration: none; color: #1f2937;">{{ post.title }}</a>
-                        </h3>
-                        <p style="color: #6b7280; font-size: 14px;">发布时间：{{ post.date | date: "%Y-%m-%d" }}</p>
-                    </div>
-                {% endif %}
-            {% endfor %}
+        {% endfor %}
+    {% else %}
+        <!-- 无文章时的兜底提示 -->
+        <div style="text-align: center; padding: 80px 0; color: #6b7280; font-size: 18px;">
+            暂无博客文章，敬请期待！
         </div>
-    {% endfor %}
-
-    <!-- 返回顶部按钮 -->
-    <div style="text-align: center; margin-top: 60px;">
-        <a href="#" style="
-            padding: 10px 20px;
-            border: 1px solid #3b82f6;
-            color: #3b82f6;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 14px;
-        ">
-            返回顶部 ↑
-        </a>
-    </div>
+    {% endif %}
 </div>
