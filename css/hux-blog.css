@@ -1694,3 +1694,21 @@ img::-moz-selection {
 .no-scroll {
   overflow-y: hidden;
 }
+/* 修复文章详情页文本不换行问题 */
+.post-container p,
+.post-content,
+.article-content {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  word-break: break-all !important;
+  line-height: 1.8 !important;
+}
+
+/* 兼容移动端 */
+@media (max-width: 768px) {
+  .post-container p,
+  .post-content {
+    padding: 0 10px;
+  }
+}
