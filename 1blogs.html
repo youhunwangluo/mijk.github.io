@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>所有博客 | 我的个人网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .blog-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .blog-card h2 {
+            font-size: 22px;
+            margin: 0 0 10px;
+        }
+        .blog-card h2 a {
+            color: #333;
+            text-decoration: none;
+        }
+        .blog-card .date {
+            color: #666;
+            font-size: 14px;
+            margin: 0 0 10px;
+        }
+        .blog-card .excerpt {
+            color: #555;
+            line-height: 1.6;
+            margin: 0 0 15px;
+        }
+        .blog-card .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .empty-tip {
+            text-align: center;
+            padding: 80px 0;
+            color: #666;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>所有博客文章</h1>
+        <div id="blog-list">
+            <!-- 手动添加文章链接（暂时替代Liquid自动遍历） -->
+            <div class="blog-card">
+                <h2><a href="/2026/03/13/test-post.html">SolidWorks 建模公差标注技巧</a></h2>
+                <p class="date">发布时间：2026-03-13</p>
+                <p class="excerpt">在机械设计中，公差标注直接影响加工精度和装配效果。本文分享3个SolidWorks公差标注的实用技巧，避免常见错误。</p>
+                <a href="/2026/03/13/test-post.html" class="btn">阅读全文</a>
+            </div>
+            <!-- 如需添加更多文章，复制上面的.blog-card模块修改即可 -->
+        </div>
+    </div>
+</body>
+</html>
