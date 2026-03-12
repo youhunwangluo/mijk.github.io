@@ -60,58 +60,23 @@ layout: default
 
         <!-- 博客板块（通用占位） -->
         <section id="blog" style="margin-bottom: 60px;">
-            <h2 style="font-size: 32px; color: #1f2937; margin-bottom: 30px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
-                最新博客
-            </h2>
-            <!-- 博客卡片容器：自适应布局 -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-                <!-- 博客卡片1（占位） -->
-                <div style="
-                    border: 1px solid #e5e7eb;
-                    border-radius: 8px;
-                    padding: 20px;
-                    transition: box-shadow 0.3s ease;
-                " onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.boxShadow='none';">
-                    <h3 style="font-size: 20px; color: #1f2937; margin-bottom: 10px;">
-                        <a href="#" style="text-decoration: none; color: inherit;">文章标题示例</a>
-                    </h3>
-                    <p style="color: #6b7280; margin-bottom: 15px; font-size: 14px;">发布时间：2026-03-12</p>
-                    <p style="color: #4b5563;">
-                        这是文章的简短摘要，可介绍文章核心内容、创作思路等。点击标题查看完整内容。
-                    </p>
-                </div>
-                <!-- 博客卡片2（占位） -->
-                <div style="
-                    border: 1px solid #e5e7eb;
-                    border-radius: 8px;
-                    padding: 20px;
-                    transition: box-shadow 0.3s ease;
-                " onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.boxShadow='none';">
-                    <h3 style="font-size: 20px; color: #1f2937; margin-bottom: 10px;">
-                        <a href="#" style="text-decoration: none; color: inherit;">另一个文章标题</a>
-                    </h3>
-                    <p style="color: #6b7280; margin-bottom: 15px; font-size: 14px;">发布时间：2026-03-10</p>
-                    <p style="color: #4b5563;">
-                        这是第二篇文章的摘要，你可以替换成自己的内容，比如技术分享、学习笔记、生活感悟等。
-                    </p>
-                </div>
-                <!-- 博客卡片3（占位） -->
-                <div style="
-                    border: 1px solid #e5e7eb;
-                    border-radius: 8px;
-                    padding: 20px;
-                    transition: box-shadow 0.3s ease;
-                " onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.boxShadow='none';">
-                    <h3 style="font-size: 20px; color: #1f2937; margin-bottom: 10px;">
-                        <a href="#" style="text-decoration: none; color: inherit;">更多文章待更新</a>
-                    </h3>
-                    <p style="color: #6b7280; margin-bottom: 15px; font-size: 14px;">发布时间：敬请期待</p>
-                    <p style="color: #4b5563;">
-                        你可以持续更新这个板块，分享自己的所学所思，打造专属的内容空间。
-                    </p>
-                </div>
-            </div>
-        </section>
+  <h2 style="font-size: 32px; color: #1f2937; margin-bottom: 30px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
+    最新博客
+  </h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+    {% for post in site.posts limit:3 %}
+    <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; transition: box-shadow 0.3s ease;" 
+         onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" 
+         onmouseout="this.style.boxShadow='none';">
+      <h3 style="font-size: 20px; color: #1f2937; margin-bottom: 10px;">
+        <a href="{{ post.url }}" style="text-decoration: none; color: inherit;">{{ post.title }}</a>
+      </h3>
+      <p style="color: #6b7280; margin-bottom: 15px; font-size: 14px;">发布时间：{{ post.date | date: "%Y-%m-%d" }}</p>
+      <p style="color: #4b5563;">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
 
         <!-- 项目板块（通用占位） -->
         <section id="projects" style="margin-bottom: 60px;">
